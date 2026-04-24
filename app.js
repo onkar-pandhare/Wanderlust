@@ -88,10 +88,9 @@ const sessionConfig={
 };
 
 
-// app.get('/',(req,res)=>{
-//     res.send("Hello i am  root");
-// });
-
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+});
 
 
 
