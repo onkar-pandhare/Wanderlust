@@ -2,9 +2,6 @@ if(process.env.NODE_ENV!=="production"){
     require('dotenv').config();
 }
 
-
-
-
 //express setup
 const express=require('express');
 const app=express();
@@ -17,7 +14,6 @@ const passport=require('passport');
 const LocalStrategy=require('passport-local');
 const User=require('./models/user.js');
 
-
 //ejs setup
 let ejs=require('ejs');
 app.set('view engine','ejs');
@@ -29,8 +25,6 @@ app.engine("ejs",ejsMate);
 
 //body parser setup
 app.use(express.urlencoded({extended:true}));
-
-
 
 //method override setup
 const methodOverride=require('method-override');
@@ -46,21 +40,19 @@ const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 
 //mongoose setup
-
 const dbURL=process.env.ATLAS_URL;
 const mongoose=require('mongoose');
 const Listing=require("./models/listing.js");
-  main().then((res)=>{
+
+main().then((res)=>{
     console.log('connected to database');
-  }).catch((err)=>{
+}).catch((err)=>{
     console.log('error connecting to database');
-  });
+});
+
 async function main(){
     await mongoose.connect(dbURL);
-   
 }
-
-
 
 const store=MongoStore.create({
     mongoUrl:dbURL,
@@ -69,10 +61,10 @@ const store=MongoStore.create({
     },
     touchAfter:24*60*60
 });
+
 store.on("error",function(e){
     console.log("Error in session store",e);
 });
-
 
 //session setup
 const sessionConfig={
@@ -87,13 +79,6 @@ const sessionConfig={
     } 
 };
 
-
-app.get('/', (req, res) => {
-    res.redirect('/listings');
-});
-
-
-
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -104,49 +89,43 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-app.get('/',(req,res)=>{
-    res.send("Hello i am  root");
+// Global middleware - Makes searchTerm available everywhere
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");  
+    res.locals.error = req.flash("error");  
+    res.locals.currUser = req.user;
+    res.locals.searchTerm = req.query.search || '';   // ← This fixes navbar error
+    next();
 });
 
-app.use((req,res,next)=>{
-  res.locals.success = req.flash("success");  
-   res.locals.error = req.flash("error");  
-   res.locals.currUser=req.user;
-  next();
+app.get('/', (req, res) => {
+    res.redirect('/listings');
 });
-
-
 
 app.get("/demouser",async(req,res)=>{
     let fakeuser=new User({
         email:"demouser@example.com",
         username:"demouser"
     });
-      let registeredUser=await User.register(fakeuser,"demopassword");
-      res.send(registeredUser);
-    });
+    let registeredUser=await User.register(fakeuser,"demopassword");
+    res.send(registeredUser);
+});
 
 //routes setup
-
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
 
-
-
-
-
+// Catch-all route (kept original format to avoid PathError)
 app.all("*path", (req, res, next) => {
     next(new ExpressError(404,"Page Not Found"));
 });
 
 app.use((err,req,res,next)=>{
- let {statusCode=500,message="Internal Server Error"}=err;
- res.status(statusCode).render("Error.ejs",{err});
-//  res.status(statusCode).send(message);
+    let {statusCode=500, message="Internal Server Error"}=err;
+    res.status(statusCode).render("Error.ejs",{err});
 });
 
-app.listen(8080,(req,res)=>{
+app.listen(8080,()=>{
     console.log('server is running on port 8080');
-})
+});

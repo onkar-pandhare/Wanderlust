@@ -4,8 +4,30 @@ const maptilerClient = require('@maptiler/client');
 maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render("listings/index", { allListings });
+  const { search } = req.query;
+  let allListings;
+  let searchTerm = search || '';
+
+  if (search && search.trim() !== '') {
+    const searchStr = search.trim();
+    const searchRegex = new RegExp(searchStr, 'i'); // 'i' = case-insensitive
+
+    allListings = await Listing.find({
+      $or: [
+        { title: searchRegex },
+        { description: searchRegex },
+        { location: searchRegex },
+        { country: searchRegex }
+      ]
+    });
+  } else {
+    allListings = await Listing.find({});
+  }
+
+  res.render("listings/index", { 
+    allListings, 
+    searchTerm 
+  });
 };
 
 module.exports.rederNewForm = (req, res) => {
@@ -28,9 +50,8 @@ module.exports.showListing = async (req, res) => {
 };
 
 module.exports.createListing = async (req, res, next) => {
-  // Forward geocode the location to get [lng, lat] coordinates
   const geoData = await maptilerClient.geocoding.forward(req.body.listing.location);
-  const coordinates = geoData.features[0].geometry.coordinates; // [lng, lat]
+  const coordinates = geoData.features[0].geometry.coordinates;
 
   let url = req.file.path;
   let filename = req.file.filename;
@@ -64,9 +85,8 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
 
-  // Re-geocode in case the location changed during edit
   const geoData = await maptilerClient.geocoding.forward(req.body.listing.location);
-  const coordinates = geoData.features[0].geometry.coordinates; // [lng, lat]
+  const coordinates = geoData.features[0].geometry.coordinates;
 
   let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
 
