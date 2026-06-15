@@ -5,14 +5,19 @@ maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
   const { search } = req.query;
-  let allListings;
   let searchTerm = search || '';
 
+  // Restrict Search to Logged-in Users Only
   if (search && search.trim() !== '') {
-    const searchStr = search.trim();
-    const searchRegex = new RegExp(searchStr, 'i'); // 'i' = case-insensitive
+    if (!req.isAuthenticated()) {
+      req.flash("error", "You must be logged in to search listings!");
+      return res.redirect("/login");
+    }
 
-    allListings = await Listing.find({
+    const searchStr = search.trim();
+    const searchRegex = new RegExp(searchStr, 'i');
+
+    const allListings = await Listing.find({
       $or: [
         { title: searchRegex },
         { description: searchRegex },
@@ -20,16 +25,22 @@ module.exports.index = async (req, res) => {
         { country: searchRegex }
       ]
     });
-  } else {
-    allListings = await Listing.find({});
-  }
 
+    return res.render("listings/index", { 
+      allListings, 
+      searchTerm 
+    });
+  } 
+
+  // Show all listings (no search) - accessible to everyone
+  const allListings = await Listing.find({});
   res.render("listings/index", { 
     allListings, 
     searchTerm 
   });
 };
 
+// Rest of your controller remains same
 module.exports.rederNewForm = (req, res) => {
   res.render("listings/new");
 };
