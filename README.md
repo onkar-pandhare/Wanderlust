@@ -1,11 +1,11 @@
 # 🏡 WanderLust – Full-Stack Vacation Rental Platform
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Node.js-Express.js-green?style=for-the-badge&logo=node.js">
-  <img src="https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb">
-  <img src="https://img.shields.io/badge/EJS-Frontend-orange?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Cloudinary-Image%20Storage-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Node.js-Express.js-green?style=for-the-badge&logo=node.js">
+  <img src="https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb">
+  <img src="https://img.shields.io/badge/EJS-Frontend-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Cloudinary-Image%20Storage-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge">
 </p>
 
 ---
@@ -20,43 +20,43 @@ The application follows the **MVC architecture** and provides complete CRUD func
 
 # ✨ Features
 
-- 🏠 Property Listing Management
-- 🔍 Browse Vacation Rentals
-- ➕ Create New Listings
-- ✏️ Update Existing Listings
-- ❌ Delete Listings
-- 📸 Cloudinary Image Upload
-- 🗺️ Interactive Maps using MapTiler
-- 📍 Automatic Geocoding
-- ⭐ User Reviews & Ratings
-- 👤 Secure User Registration & Login
-- 🔐 Passport.js Authentication
-- 🍪 Session Management
-- 🛡️ Authorization & Ownership Validation
-- ✅ Server-side Form Validation using Joi
-- ⚠️ Centralized Error Handling
-- 📱 Responsive User Interface
+* 🏠 Property Listing Management
+* 🔍 Browse Vacation Rentals
+* ➕ Create New Listings
+* ✏️ Update Existing Listings
+* ❌ Delete Listings
+* 📸 Cloudinary Image Upload
+* 🗺️ Interactive Maps using MapTiler
+* 📍 Automatic Geocoding
+* ⭐ User Reviews & Ratings
+* 👤 Secure User Registration & Login
+* 🔐 Passport.js Authentication
+* 🍪 Session Management
+* 🛡️ Authorization & Ownership Validation
+* ✅ Server-side Form Validation using Joi
+* ⚠️ Centralized Error Handling
+* 📱 Responsive User Interface
 
 ---
 
 # 🏗️ System Architecture
 
-```
-                  User
-                    │
-                    ▼
-            EJS Frontend (UI)
-                    │
-                    ▼
-          Node.js + Express.js
-                    │
-          MVC Architecture
-                    │
- ┌──────────────────┼───────────────────┐
- │                  │                   │
- ▼                  ▼                   ▼
-MongoDB        Cloudinary          MapTiler API
-(Database)   (Image Storage)   (Maps & Geocoding)
+```text
+                  User
+                    │
+                    ▼
+            EJS Frontend (UI)
+                    │
+                    ▼
+            Node.js + Express.js
+                    │
+              MVC Architecture
+                    │
+ ┌──────────────────┼───────────────────┐
+ │                  │                   │
+ ▼                  ▼                   ▼
+MongoDB         Cloudinary          MapTiler API
+(Database)    (Image Storage)    (Maps & Geocoding)
 ```
 
 ---
@@ -65,45 +65,45 @@ MongoDB        Cloudinary          MapTiler API
 
 ## User Authentication
 
-- User Registration
-- Secure Password Hashing
-- User Login
-- Session Management
-- Logout
+* User Registration
+* Secure Password Hashing
+* User Login
+* Session Management
+* Logout
 
 ↓
 
 ## Property Management
 
-- Create Property Listings
-- Upload Listing Images
-- Store Images on Cloudinary
-- Save Property Details in MongoDB
+* Create Property Listings
+* Upload Listing Images
+* Store Images on Cloudinary
+* Save Property Details in MongoDB
 
 ↓
 
 ## Location Services
 
-- Convert Location into Coordinates
-- Display Interactive Map
-- Show Property Marker
+* Convert Location into Coordinates
+* Display Interactive Map
+* Show Property Marker
 
 ↓
 
 ## Review System
 
-- Add Reviews
-- Rate Properties
-- Delete Own Reviews
-- Display Average Ratings
+* Add Reviews
+* Rate Properties
+* Delete Own Reviews
+* Display Average Ratings
 
 ↓
 
 ## Authorization
 
-- Only Owners can Edit Listings
-- Only Owners can Delete Listings
-- Only Logged-in Users can Review
+* Only Owners can Edit Listings
+* Only Owners can Delete Listings
+* Only Logged-in Users can Review
 
 ---
 
@@ -111,46 +111,72 @@ MongoDB        Cloudinary          MapTiler API
 
 ### 🏠 Property Listings
 
-- Create new listings
-- Edit listing details
-- Delete listings
-- View all available properties
+* Create new listings
+* Edit listing details
+* Delete listings
+* View all available properties
 
 ### 📸 Image Upload
 
-- Cloudinary Integration
-- Automatic Image Storage
-- Image Preview
-- Optimized Image Delivery
+* Cloudinary Integration
+* Automatic Image Storage
+* Image Preview
+* Optimized Image Delivery
 
 ### 🗺️ Maps Integration
 
-- MapTiler API
-- Forward Geocoding
-- Interactive Maps
-- Property Location Marker
+* MapTiler API
+* Forward Geocoding
+* Interactive Maps
+* Property Location Marker
 
 ### ⭐ Reviews
 
-- Five-Star Rating System
-- User Comments
-- Review Management
-- Author Validation
+* Five-Star Rating System
+* User Comments
+* Review Management
+* Author Validation
 
 ### 🔐 Authentication
 
-- Passport.js Local Strategy
-- Express Sessions
-- Flash Messages
-- Protected Routes
+* Passport.js Local Strategy
+* Express Sessions
+* Flash Messages
+* Protected Routes
 
 ### 🛡️ Security
 
-- Route Protection
-- Owner Authorization
-- Review Authorization
-- Joi Validation
-- Error Handling Middleware
+* Route Protection
+* Owner Authorization
+* Review Authorization
+* Joi Validation
+* Error Handling Middleware
+
+---
+
+# 📸 Screenshots
+
+## 🏠 Home Page
+
+![WanderLust Home Page](previews/home.png)
+
+---
+
+## 🏡 Listing Information
+
+![WanderLust Listing Information](previews/listing%20info.png)
+
+---
+
+## ⭐ Reviews & Ratings
+
+![WanderLust Reviews and Ratings](previews/reviews.png)
+
+---
+
+## ➕ Add New Listing
+
+![WanderLust Add New Listing](previews/listings.png)
 
 ---
 
@@ -158,55 +184,55 @@ MongoDB        Cloudinary          MapTiler API
 
 ## Frontend
 
-- EJS
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap 5
+* EJS
+* HTML5
+* CSS3
+* JavaScript
+* Bootstrap 5
 
 ## Backend
 
-- Node.js
-- Express.js
+* Node.js
+* Express.js
 
 ## Database
 
-- MongoDB
-- Mongoose
+* MongoDB
+* Mongoose
 
 ## Authentication
 
-- Passport.js
-- Passport Local
-- Express Session
-- Connect Mongo
+* Passport.js
+* Passport Local
+* Express Session
+* Connect Mongo
 
 ## Cloud Services
 
-- Cloudinary
-- Multer
-- Multer Storage Cloudinary
+* Cloudinary
+* Multer
+* Multer Storage Cloudinary
 
 ## Maps & APIs
 
-- MapTiler SDK
-- MapTiler Geocoding API
+* MapTiler SDK
+* MapTiler Geocoding API
 
 ## Validation
 
-- Joi
+* Joi
 
 ## Utilities
 
-- Method Override
-- Connect Flash
-- dotenv
+* Method Override
+* Connect Flash
+* dotenv
 
 ---
 
 # 📂 Project Structure
 
-```
+```text
 WanderLust
 │
 ├── controllers/
@@ -215,15 +241,15 @@ WanderLust
 ├── middleware/
 ├── utils/
 ├── public/
-│   ├── css/
-│   ├── js/
-│   └── images/
+│   ├── css/
+│   ├── js/
+│   └── images/
 │
-├── views/
-│   ├── layouts/
-│   ├── listings/
-│   ├── users/
-│   └── includes/
+├── previews/
+│   ├── home.png
+│   ├── listing info.png
+│   ├── reviews.png
+│   └── listings.png
 │
 ├── uploads/
 ├── app.js
@@ -235,18 +261,17 @@ WanderLust
 
 # 📊 Core Modules
 
-- User Authentication
-- Property Listings
-- Image Upload
-- Interactive Maps
-- Reviews & Ratings
-- Session Management
-- Authorization
-- Error Handling
-- Input Validation
+* User Authentication
+* Property Listings
+* Image Upload
+* Interactive Maps
+* Reviews & Ratings
+* Session Management
+* Authorization
+* Error Handling
+* Input Validation
 
 ---
-
 
 # 🚀 Installation
 
@@ -288,7 +313,7 @@ npm start
 
 Application runs at:
 
-```
+```text
 http://localhost:8080
 ```
 
@@ -296,16 +321,16 @@ http://localhost:8080
 
 # 🔮 Future Enhancements
 
-- Property Booking System
-- Wishlist Feature
-- Payment Gateway Integration
-- Advanced Search & Filters
-- Nearby Attractions
-- Google OAuth Login
-- Email Notifications
-- Admin Dashboard
-- Availability Calendar
-- Mobile Responsive Enhancements
+* Property Booking System
+* Wishlist Feature
+* Payment Gateway Integration
+* Advanced Search & Filters
+* Nearby Attractions
+* Google OAuth Login
+* Email Notifications
+* Admin Dashboard
+* Availability Calendar
+* Mobile Responsive Enhancements
 
 ---
 
@@ -315,11 +340,11 @@ http://localhost:8080
 
 Information Technology Engineer
 
-📧 Email: onkarpandhare22@gmail.com
+📧 Email: [onkarpandhare22@gmail.com](mailto:onkarpandhare22@gmail.com)
 
 🔗 GitHub: https://github.com/onkar-pandhare
 
-🔗 LinkedIn: www.linkedin.com/in/onkarpandhare
+🔗 LinkedIn: [www.linkedin.com/in/onkarpandhare](http://www.linkedin.com/in/onkarpandhare)
 
 ---
 
@@ -334,5 +359,3 @@ Your support motivates me to build more high-quality open-source projects.
 # 📜 License
 
 This project is developed for educational and learning purposes.
-
-i want every thing same just screenshots were added so give me new updated code
